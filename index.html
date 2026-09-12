@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claude GATOR | $CLAUDEGATOR</title>
+  <meta name="description" content="Claude GATOR brings AI brains, savage meme energy, and unstoppable GATOR vibes straight to the blockchain!" />
+  <link rel="icon" href="logo.jpg" type="image/jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ivory: "#F3EDE3",
+            cream: "#E4D8C4",
+            bone: "#C9B79A",
+            ruby: "#C41E3A",
+            blood: "#8B1518",
+            stone: "#6B6560",
+            swamp: "#0B1410",
+            moss: "#24332A",
+            fen: "#15241C",
+            mist: "#B8B4AC"
+          },
+          fontFamily: {
+            display: ["Bebas Neue", "Impact", "sans-serif"],
+            sans: ["Outfit", "system-ui", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root {
+      --ca: "0xE99Bd31C1761BAE7FF366c510b095Dc32fd562c1";
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: #0B1410;
+      color: #F3EDE3;
+    }
+
+    .river-bg {
+      background:
+        linear-gradient(180deg, rgba(11, 20, 16, 0.55) 0%, rgba(11, 20, 16, 0.72) 40%, #0B1410 100%),
+        url("banner.jpg") center / cover no-repeat fixed;
+    }
+
+    .mist-layer {
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 40% at 20% 10%, rgba(184, 180, 172, 0.16), transparent 55%),
+        radial-gradient(ellipse 70% 35% at 80% 20%, rgba(184, 180, 172, 0.1), transparent 50%),
+        radial-gradient(ellipse 90% 50% at 50% 100%, rgba(21, 36, 28, 0.7), transparent 60%);
+      animation: drift 18s ease-in-out infinite;
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translateX(0) translateY(0); opacity: 1; }
+      50% { transform: translateX(2%) translateY(-1%); opacity: 0.85; }
+    }
+
+    .water-shimmer {
+      pointer-events: none;
+      background: linear-gradient(
+        115deg,
+        transparent 0%,
+        rgba(243, 237, 227, 0.03) 35%,
+        rgba(243, 237, 227, 0.08) 50%,
+        rgba(243, 237, 227, 0.03) 65%,
+        transparent 100%
+      );
+      background-size: 220% 100%;
+      animation: shimmer 9s linear infinite;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 120% 0; }
+      100% { background-position: -120% 0; }
+    }
+
+    .scale-pattern {
+      background-image: radial-gradient(circle at 50% 0%, rgba(201, 183, 154, 0.07) 0 18%, transparent 19%);
+      background-size: 28px 18px;
+    }
+
+    .glass-card {
+      background: linear-gradient(180deg, rgba(36, 51, 42, 0.72), rgba(11, 20, 16, 0.86));
+      border: 1px solid rgba(201, 183, 154, 0.18);
+      backdrop-filter: blur(16px);
+    }
+
+    .teeth {
+      height: 18px;
+      background:
+        linear-gradient(135deg, transparent 50%, #F3EDE3 50%) 0 0 / 22px 18px repeat-x,
+        linear-gradient(-135deg, transparent 50%, #F3EDE3 50%) 11px 0 / 22px 18px repeat-x;
+    }
+
+    .teeth-dark {
+      height: 18px;
+      background:
+        linear-gradient(135deg, transparent 50%, #0B1410 50%) 0 0 / 22px 18px repeat-x,
+        linear-gradient(-135deg, transparent 50%, #0B1410 50%) 11px 0 / 22px 18px repeat-x;
+    }
+
+    .eye-glow {
+      box-shadow: 0 0 0 2px rgba(196, 30, 58, 0.35), 0 0 28px rgba(196, 30, 58, 0.28);
+    }
+
+    .logo-ring {
+      box-shadow:
+        0 0 0 3px rgba(243, 237, 227, 0.85),
+        0 0 0 8px rgba(196, 30, 58, 0.22),
+        0 20px 50px rgba(0, 0, 0, 0.45);
+    }
+
+    .btn-ruby {
+      background: linear-gradient(180deg, #E11D3A, #8B1518);
+      box-shadow: 0 10px 24px rgba(139, 21, 24, 0.35);
+    }
+
+    .btn-ruby:hover { filter: brightness(1.08); }
+
+    .btn-ivory {
+      background: #F3EDE3;
+      color: #0B1410;
+    }
+
+    .btn-ivory:hover { background: #E4D8C4; }
+
+    .step-num {
+      font-family: "Bebas Neue", sans-serif;
+      background: #F3EDE3;
+      color: #0B1410;
+    }
+
+    .nav-blur {
+      background: rgba(11, 20, 16, 0.72);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(201, 183, 154, 0.12);
+    }
+
+    .ca-chip {
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.08em;
+    }
+
+    iframe.chart-frame {
+      min-height: 620px;
+    }
+
+    @media (max-width: 768px) {
+      iframe.chart-frame { min-height: 480px; }
+      .river-bg { background-attachment: scroll; }
+    }
+  </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden">
+  <div class="fixed inset-0 river-bg -z-20"></div>
+  <div class="fixed inset-0 mist-layer -z-10"></div>
+  <div class="fixed inset-0 water-shimmer -z-10"></div>
+
+  <header class="nav-blur sticky top-0 z-50">
+    <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+      <a href="#top" class="flex items-center gap-3">
+        <img src="logo.jpg" alt="Claude GATOR logo" class="h-11 w-11 rounded-full object-cover eye-glow" />
+        <div class="leading-none">
+          <p class="font-display text-2xl tracking-wide text-ivory">Claude GATOR</p>
+          <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-bone">$CLAUDEGATOR</p>
+        </div>
+      </a>
+
+      <nav class="hidden items-center gap-7 text-sm font-semibold uppercase tracking-wider text-cream md:flex">
+        <a href="#about" class="hover:text-ivory">About</a>
+        <a href="#howtobuy" class="hover:text-ivory">How to Buy</a>
+        <a href="#chart" class="hover:text-ivory">Chart</a>
+      </nav>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+        <a href="https://x.com/ClaudeGATORx" target="_blank" rel="noopener noreferrer" class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-bone/20 bg-swamp/70 hover:border-ivory/50" aria-label="Claude GATOR on X">
+          <img src="x.png" alt="X" class="h-4 w-4 invert" />
+        </a>
+        <a href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0xE99Bd31C1761BAE7FF366c510b095Dc32fd562c1" target="_blank" rel="noopener noreferrer" class="btn-ruby rounded-full px-4 py-2 text-sm font-bold uppercase tracking-wider text-ivory sm:px-5">
+          Buy Now
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="relative overflow-hidden px-4 pb-20 pt-10 sm:pt-16">
+      <div class="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <div>
+          <p class="mb-4 inline-flex items-center gap-2 rounded-full border border-bone/25 bg-swamp/50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-bone">
+            <span class="h-2 w-2 rounded-full bg-ruby"></span>
+            Robinhood Chain Apex Predator
+          </p>
+          <h1 class="font-display text-6xl leading-[0.9] text-ivory sm:text-8xl">
+            Claude<br /><span class="text-cream">GATOR</span>
+          </h1>
+          <p class="mt-2 font-display text-2xl tracking-[0.18em] text-ruby sm:text-3xl">$CLAUDEGATOR</p>
+          <p class="mt-6 max-w-xl text-lg leading-relaxed text-cream/90 sm:text-xl">
+            Claude GATOR brings AI brains, savage meme energy, and unstoppable GATOR vibes straight to the blockchain!
+          </p>
+
+          <div class="mt-8 flex flex-wrap items-center gap-3">
+            <a href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0xE99Bd31C1761BAE7FF366c510b095Dc32fd562c1" target="_blank" rel="noopener noreferrer" class="btn-ruby rounded-full px-6 py-3 text-base font-bold uppercase tracking-wider text-ivory">
+              Buy Now
+            </a>
+            <a href="https://dexscreener.com/robinhood/0xE99Bd31C1761BAE7FF366c510b095Dc32fd562c1" target="_blank" rel="noopener noreferrer" class="btn-ivory rounded-full px-6 py-3 text-base font-bold uppercase tracking-wider">
+              Chart
+            </a>
+          </div>
+
+          <div class="mt-6 flex flex-wrap items-center gap-3">
+            <div class="glass-card flex min-w-0 items-center gap-3 rounded-full px-3 py-2">
+              <span class="hidden text-[11px] font-bold uppercase tracking-[0.2em] text-bone sm:inline">CA</span>
+              <code id="ca-display" class="ca-chip truncate text-sm text-ivory">0xE99Bd31C1761BAE7FF366c510b095Dc32fd562c1</code>
+              <button id="copy-ca" type="button" class="rounded-full bg-ivory px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-swamp hover:bg-cream">
+                Copy
+              </button>
+            </div>
+            <p id="copy-status" class="text-xs font-medium text-bone" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <div class="relative mx-auto w-full max-w-md">
+          <div class="absolute -inset-6 rounded-full bg-ruby/10 blur-3xl"></div>
+          <img src="logo.jpg" alt="Albino Claude GATOR" class="logo-ring relative z-10 w-full rounded-full object-cover" />
+          <div class="absolute -bottom-4 left-1/2 z-20 w-[92%] -translate-x-1/2 rounded-2xl glass-card px-4 py-3 text-center">
+            <p class="font-display text-2xl tracking-wide text-ivory">The Ivory King</p>
+            <p class="text-xs uppercase tracking-[0.2em] text-bone">AI brains. Snap jaw. On-chain.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="teeth" aria-hidden="true"></div>
+
+    <section id="about" class="relative bg-swamp px-4 py-20">
+      <div class="absolute inset-0 scale-pattern opacity-70"></div>
+      <div class="relative mx-auto max-w-6xl">
+        <div class="mx-auto max-w-3xl text-center">
+          <p class="text-xs font-bold uppercase tracking-[0.3em] text-ruby">Enter the Swamp</p>
+          <h2 class="mt-3 font-display text-5xl text-ivory sm:text-6xl">Unstoppable GATOR Vibes</h2>
+          <p class="mt-5 text-lg leading-relaxed text-cream/85">
+            Claude GATOR is not another sleepy river lizard. It is a cinematic albino apex meme — cold calculation up top, savage snap energy in the jaws, and a current that never stops moving.
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-5 md:grid-cols-3">
+          <article class="glass-card rounded-3xl p-7">
+            <p class="font-display text-4xl text-ruby">01</p>
+            <h3 class="mt-3 font-display text-3xl text-ivory">AI Brains</h3>
+            <p class="mt-3 leading-relaxed text-cream/80">
+              Calculated. Patient. Watching from the fog. Claude GATOR thinks first, then strikes with machine-precision meme timing.
+            </p>
+          </article>
+          <article class="glass-card rounded-3xl p-7">
+            <p class="font-display text-4xl text-ruby">02</p>
+            <h3 class="mt-3 font-display text-3xl text-ivory">Savage Energy</h3>
+            <p class="mt-3 leading-relaxed text-cream/80">
+              Ruby-eyed and unbothered. This gator does not splash around — it waits, then dumps the whole swamp on the timeline.
+            </p>
+          </article>
+          <article class="glass-card rounded-3xl p-7">
+            <p class="font-display text-4xl text-ruby">03</p>
+            <h3 class="mt-3 font-display text-3xl text-ivory">On-Chain Jaws</h3>
+            <p class="mt-3 leading-relaxed text-cream/80">
+              $CLAUDEGATOR lives on Robinhood chain. No cage. No zoo. Just ivory scales, deep water, and an open swap.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="teeth-dark bg-ivory" aria-hidden="true"></div>
+
+    <section id="howtobuy" class="relative bg-gradient-to-b from-ivory to-[#d8c9b0] px-4 py-20 text-swamp">
+      <div class="mx-auto max-w-6xl">
+        <div class="max-w-2xl">
+          <p class="text-xs font-bold uppercase tracking-[0.3em] text-blood">Hunt Sequence</p>
+          <h2 class="mt-3 font-display text-5xl sm:text-6xl">How to Buy $CLAUDEGATOR</h2>
+          <p class="mt-4 text-lg leading-relaxed text-moss">
+            Four snaps. That is all it takes to pull $CLAUDEGATOR out of the river using Robinhood ETH.
+          </p>
+        </div>
+
+        <ol class="mt-12 grid gap-5 md:grid-cols-2">
+          <li class="rounded-3xl border border-swamp/10 bg-white/55 p-6 shadow-sm backdrop-blur">
+            <div class="flex items-start gap-4">
+              <span class="step-num flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-2xl">1</span>
+              <div>
+                <h3 class="font-display text-3xl">Open a Web3 Wallet</h3>
+                <p class="mt-2 leading-relaxed text-moss">
+                  Install MetaMask or any wallet that can hold Robinhood ETH. This is your den. Keep the keys. Lose the keys, lose the gator.
+                </p>
+              </div>
+            </div>
+          </li>
+          <li class="rounded-3xl border border-swamp/10 bg-white/55 p-6 shadow-sm backdrop-blur">
+            <div class="flex items-start gap-4">
+              <span class="step-num flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-2xl">2</span>
+              <div>
+                <h3 class="font-display text-3xl">Fund Robinhood ETH</h3>
+                <p class="mt-2 leading-relaxed text-moss">
+                  Get ETH on the Robinhood chain. That ETH is both your gas and your bait — you will swap it for $CLAUDEGATOR.
+                </p>
+              </div>
+            </div>
+          </li>
+          <li class="rounded-3xl border border-swamp/10 bg-white/55 p-6 shadow-sm backdrop-blur">
+            <div class="flex items-start gap-4">
+              <span class="step-num flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-2xl">3</span>
+              <div>
+                <h3 class="font-display text-3xl">Connect Uniswap</h3>
+                <p class="mt-2 leading-relaxed text-moss">
+                  Hit Buy Now and open Uniswap on Robinhood. Connect the same wallet. Confirm you are on the Robinhood network, not a lookalike swamp.
+                </p>
+              </div>
+            </div>
+          </li>
+          <li class="rounded-3xl border border-swamp/10 bg-white/55 p-6 shadow-sm backdrop-blur">
+            <div class="flex items-start gap-4">
+              <span class="step-num flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-2xl">4</span>
+              <div>
+                <h3 class="font-display text-3xl">Swap for $CLAUDEGATOR</h3>
+                <p class="mt-2 leading-relaxed text-moss">
+                  Paste the contract address, pair Robinhood ETH into $CLAUDEGATOR, and confirm the snap. You are in the river now.
+                </p>
+              </div>
+            </div>
+          </li>
+        </ol>
+
+        <div class="mt-10 flex flex-wrap items-center gap-3">
+          <a href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0xE99Bd31C1761BAE7FF366c510b095Dc32fd562c1" target="_blank" rel="noopener noreferrer" class="btn-ruby rounded-full px-6 py-3 text-base font-bold uppercase tracking-wider text-ivory">
+            Buy Now
+          </a>
+          <button type="button" id="copy-ca-howto" class="rounded-full border-2 border-swamp bg-transparent px-6 py-3 text-base font-bold uppercase tracking-wider text-swamp hover:bg-swamp hover:text-ivory">
+            Copy CA
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <div class="teeth bg-ivory" aria-hidden="true"></div>
+
+    <section id="chart" class="relative px-4 py-20">
+      <div class="mx-auto max-w-6xl">
+        <div class="mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[0.3em] text-bone">Live Water</p>
+            <h2 class="mt-3 font-display text-5xl text-ivory sm:text-6xl">Dexscreener Chart</h2>
+            <p class="mt-3 max-w-xl text-cream/80">Watch the current. When the pair is live, the river prints here.</p>
+          </div>
+          <a href="https://dexscreener.com/robinhood/0xE99Bd31C1761BAE7FF366c510b095Dc32fd562c1" target="_blank" rel="noopener noreferrer" class="btn-ivory rounded-full px-6 py-3 text-sm font-bold uppercase tracking-wider">
+            Open Chart
+          </a>
+        </div>
+
+        <div class="overflow-hidden rounded-3xl border border-bone/20 bg-fen/80">
+          <iframe
+            class="chart-frame w-full"
+            title="Dexscreener Claude GATOR chart"
+            src="https://dexscreener.com/robinhood/0xE99Bd31C1761BAE7FF366c510b095Dc32fd562c1?embed=1&theme=dark&trades=0&info=0"
+            allow="clipboard-write"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-bone/15 bg-swamp/90 px-4 py-10">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 sm:flex-row">
+      <div class="flex items-center gap-3">
+        <img src="logo.jpg" alt="" class="h-12 w-12 rounded-full object-cover" />
+        <div>
+          <p class="font-display text-2xl text-ivory">Claude GATOR</p>
+          <p class="text-xs uppercase tracking-[0.2em] text-bone">$CLAUDEGATOR</p>
+        </div>
+      </div>
+      <p class="max-w-md text-center text-sm text-cream/70 sm:text-right">
+        Meme token. Not financial advice. Swim at your own risk.
+      </p>
+      <a href="https://x.com/ClaudeGATORx" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full border border-bone/25 px-4 py-2 text-sm font-semibold text-ivory hover:border-ivory">
+        <img src="x.png" alt="" class="h-3.5 w-3.5 invert" />
+        @ClaudeGATORx
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    const CONTRACT_ADDRESS = "0xE99Bd31C1761BAE7FF366c510b095Dc32fd562c1";
+
+    function copyContract(statusEl) {
+      const done = () => {
+        if (!statusEl) return;
+        statusEl.textContent = "Copied.";
+        window.setTimeout(() => { statusEl.textContent = ""; }, 1800);
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(CONTRACT_ADDRESS).then(done).catch(() => fallbackCopy(done));
+      } else {
+        fallbackCopy(done);
+      }
+    }
+
+    function fallbackCopy(done) {
+      const input = document.createElement("textarea");
+      input.value = CONTRACT_ADDRESS;
+      input.setAttribute("readonly", "");
+      input.style.position = "fixed";
+      input.style.left = "-9999px";
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand("copy");
+      document.body.removeChild(input);
+      done();
+    }
+
+    const status = document.getElementById("copy-status");
+    document.getElementById("copy-ca").addEventListener("click", () => copyContract(status));
+    document.getElementById("copy-ca-howto").addEventListener("click", () => copyContract(status));
+    document.getElementById("ca-display").textContent = CONTRACT_ADDRESS;
+  </script>
+</body>
+</html>
