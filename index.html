@@ -29,6 +29,9 @@
           fontFamily: {
             display: ["Bebas Neue", "Impact", "sans-serif"],
             sans: ["Outfit", "system-ui", "sans-serif"]
+          },
+          letterSpacing: {
+            display: "0.06em"
           }
         }
       }
@@ -40,6 +43,10 @@
     }
 
     html { scroll-behavior: smooth; }
+
+    .font-display { letter-spacing: 0.06em; }
+
+    section[id] { scroll-margin-top: 88px; }
 
     body {
       background: #0B1410;
@@ -162,10 +169,10 @@
     }
   </style>
 </head>
-<body class="font-sans antialiased overflow-x-hidden">
-  <div class="fixed inset-0 river-bg -z-20"></div>
-  <div class="fixed inset-0 mist-layer -z-10"></div>
-  <div class="fixed inset-0 water-shimmer -z-10"></div>
+<body class="font-sans antialiased">
+  <div class="pointer-events-none fixed inset-0 -z-20 river-bg"></div>
+  <div class="pointer-events-none fixed inset-0 -z-10 mist-layer"></div>
+  <div class="pointer-events-none fixed inset-0 -z-10 water-shimmer"></div>
 
   <header class="nav-blur sticky top-0 z-50">
     <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
@@ -202,7 +209,7 @@
             <span class="h-2 w-2 rounded-full bg-ruby"></span>
             Robinhood Chain Apex Predator
           </p>
-          <h1 class="font-display text-6xl leading-[0.9] text-ivory sm:text-8xl">
+          <h1 class="font-display text-6xl leading-[0.86] text-ivory sm:text-8xl">
             Claude<br /><span class="text-cream">GATOR</span>
           </h1>
           <p class="mt-2 font-display text-2xl tracking-[0.18em] text-ruby sm:text-3xl">$CLAUDEGATOR</p>
@@ -222,7 +229,7 @@
           <div class="mt-6 flex flex-wrap items-center gap-3">
             <div class="glass-card flex min-w-0 items-center gap-3 rounded-full px-3 py-2">
               <span class="hidden text-[11px] font-bold uppercase tracking-[0.2em] text-bone sm:inline">CA</span>
-              <code id="ca-display" class="ca-chip truncate text-sm text-ivory">0xE99Bd31C1761BAE7FF366c510b095Dc32fd562c1</code>
+              <code id="ca-display" class="ca-chip max-w-[11rem] truncate text-sm text-ivory sm:max-w-xs" title="0xE99Bd31C1761BAE7FF366c510b095Dc32fd562c1">0xE99B...62c1</code>
               <button id="copy-ca" type="button" class="rounded-full bg-ivory px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-swamp hover:bg-cream">
                 Copy
               </button>
@@ -243,6 +250,11 @@
     </section>
 
     <div class="teeth" aria-hidden="true"></div>
+    <div class="overflow-hidden border-y border-swamp/10 bg-ivory py-2">
+      <p class="animate-pulse text-center font-display text-lg tracking-[0.28em] text-swamp sm:text-xl">
+        CLAUDE GATOR &nbsp;•&nbsp; $CLAUDEGATOR &nbsp;•&nbsp; AI BRAINS &nbsp;•&nbsp; SAVAGE MEME ENERGY &nbsp;•&nbsp; UNSTOPPABLE GATOR VIBES
+      </p>
+    </div>
 
     <section id="about" class="relative bg-swamp px-4 py-20">
       <div class="absolute inset-0 scale-pattern opacity-70"></div>
@@ -400,11 +412,20 @@
   <script>
     const CONTRACT_ADDRESS = "0xE99Bd31C1761BAE7FF366c510b095Dc32fd562c1";
 
-    function copyContract(statusEl) {
+    function shortCa(value) {
+      if (!value || value.length < 12) return value;
+      return value.slice(0, 6) + "..." + value.slice(-4);
+    }
+
+    function copyContract(buttonEl) {
+      const original = buttonEl ? buttonEl.textContent : "";
       const done = () => {
-        if (!statusEl) return;
-        statusEl.textContent = "Copied.";
-        window.setTimeout(() => { statusEl.textContent = ""; }, 1800);
+        if (status) status.textContent = "Copied.";
+        if (buttonEl) buttonEl.textContent = "Copied";
+        window.setTimeout(() => {
+          if (status) status.textContent = "";
+          if (buttonEl) buttonEl.textContent = original;
+        }, 1800);
       };
 
       if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -428,9 +449,11 @@
     }
 
     const status = document.getElementById("copy-status");
-    document.getElementById("copy-ca").addEventListener("click", () => copyContract(status));
-    document.getElementById("copy-ca-howto").addEventListener("click", () => copyContract(status));
-    document.getElementById("ca-display").textContent = CONTRACT_ADDRESS;
+    const caDisplay = document.getElementById("ca-display");
+    caDisplay.textContent = shortCa(CONTRACT_ADDRESS);
+    caDisplay.setAttribute("title", CONTRACT_ADDRESS);
+    document.getElementById("copy-ca").addEventListener("click", (event) => copyContract(event.currentTarget));
+    document.getElementById("copy-ca-howto").addEventListener("click", (event) => copyContract(event.currentTarget));
   </script>
 </body>
 </html>
